@@ -1,0 +1,529 @@
+MySQL Shell 8.0.12
+
+Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 4
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| northwind          |
+| performance_schema |
+| sakila             |
+| test               |
+| world              |
++--------------------+
+7 rows in set (0.0007 sec)
+
+ MySQL  localhost:3306  SQL > create database evaluacion_3;
+Query OK, 1 row affected (0.0016 sec)
+
+ MySQL  localhost:3306  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| evaluacion_3       |
+| mysql              |
+| northwind          |
+| performance_schema |
+| sakila             |
+| test               |
+| world              |
++--------------------+
+8 rows in set (0.0009 sec)
+
+ MySQL  localhost:3306  SQL > select suma_numeros(1,56);
+ERROR: 1305 (42000): FUNCTION suma_numeros does not exist
+
+ MySQL  localhost:3306  SQL > \use evaluacion_3
+Default schema set to `evaluacion_3`.
+Fetching table and column names from `evaluacion_3` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select suma_numeros(1,56);
++--------------------+
+| suma_numeros(1,56) |
++--------------------+
+|                 57 |
++--------------------+
+1 row in set (0.0003 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select suma_numeros(456,98) as sumatoria;
++-----------+
+| sumatoria |
++-----------+
+|       554 |
++-----------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| evaluacion_3       |
+| mysql              |
+| northwind          |
+| performance_schema |
+| sakila             |
+| test               |
+| world              |
++--------------------+
+8 rows in set (0.0009 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > \use northwind
+Default schema set to `northwind`.
+Fetching table and column names from `northwind` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  northwind  SQL > show tables;
++----------------------+
+| Tables_in_northwind  |
++----------------------+
+| account              |
+| categories           |
+| customercustomerdemo |
+| customerdemographics |
+| customers            |
+| empleados            |
+| employees            |
+| employeeterritories  |
+| lista_empleados      |
+| lista_empleados_a    |
+| mi_rfc               |
+| nombre_cliente       |
+| orderdetails         |
+| orders               |
+| pagos_empleados      |
+| personas             |
+| products             |
+| prueba2              |
+| region               |
+| rfc_gringos          |
+| shippers             |
+| suppliers            |
+| territories          |
+| ventas_producto      |
++----------------------+
+24 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) from account;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.0212 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) from employees;
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.0003 sec)
+
+ MySQL  localhost:3306  northwind  SQL >
+ MySQL  localhost:3306  northwind  SQL > select count(*) from products;
++----------+
+| count(*) |
++----------+
+|       77 |
++----------+
+1 row in set (0.0003 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) from orderdetails;
++----------+
+| count(*) |
++----------+
+|     2155 |
++----------+
+1 row in set (0.0008 sec)
+
+ MySQL  localhost:3306  northwind  SQL > desc account;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| acct_num | int(11)       | YES  |     | NULL    |       |
+| amount   | decimal(10,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+2 rows in set (0.0040 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select * from account;
++----------+--------+
+| acct_num | amount |
++----------+--------+
+|      100 |  10.00 |
+|      101 |  20.00 |
+|      102 |  30.00 |
++----------+--------+
+3 rows in set (0.0003 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select cuentaclientes;
+ERROR: 1054 (42S22): Unknown column 'cuentaclientes' in 'field list'
+
+ MySQL  localhost:3306  northwind  SQL > select cuentaclientes();
++------------------+
+| cuentaclientes() |
++------------------+
+|               93 |
++------------------+
+1 row in set (0.0005 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select sumatoria(6);
+ERROR: 1305 (42000): FUNCTION northwind.sumatoria does not exist
+
+ MySQL  localhost:3306  northwind  SQL > \use evaluacion_3
+Default schema set to `evaluacion_3`.
+Fetching table and column names from `evaluacion_3` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(6);
++--------------+
+| sumatoria(6) |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.0004 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(6);
++--------------+
+| sumatoria(6) |
++--------------+
+|           21 |
++--------------+
+1 row in set (0.0004 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(10);
++---------------+
+| sumatoria(10) |
++---------------+
+|            55 |
++---------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(1);
++--------------+
+| sumatoria(1) |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.0003 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(2);
++--------------+
+| sumatoria(2) |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(3);
++--------------+
+| sumatoria(3) |
++--------------+
+|            6 |
++--------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(4);
++--------------+
+| sumatoria(4) |
++--------------+
+|           10 |
++--------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(5);
++--------------+
+| sumatoria(5) |
++--------------+
+|           15 |
++--------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(6);
++--------------+
+| sumatoria(6) |
++--------------+
+|           21 |
++--------------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(100);
++----------------+
+| sumatoria(100) |
++----------------+
+|           5050 |
++----------------+
+1 row in set (0.0004 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select sumatoria(1000);
++-----------------+
+| sumatoria(1000) |
++-----------------+
+|          500500 |
++-----------------+
+1 row in set (0.0014 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > create table xd( nombre varchar(5));
+Query OK, 0 rows affected (0.0936 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > insert into xd values ('a'),('b'),('c');
+Query OK, 3 rows affected (0.0575 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select * from xd
+                                        ... ;
++--------+
+| nombre |
++--------+
+| a      |
+| b      |
+| c      |
++--------+
+3 rows in set (0.0003 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > select no_select();
++-------------+
+| no_select() |
++-------------+
+|           3 |
++-------------+
+1 row in set (0.0004 sec)
+
+ MySQL  localhost:3306  evaluacion_3  SQL > \use northwind;
+MySQL Error 1049 (42000): ClassicSession.runSql: Unknown database 'northwind;'
+
+ MySQL  localhost:3306  evaluacion_3  SQL > \use northwind
+Default schema set to `northwind`.
+Fetching table and column names from `northwind` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) fro orders where customerid= 'ANATR';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'orders where customerid= 'ANATR'' at line 1
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) from orders where customerid= 'ANATR';
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.0004 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select customerid, companyname, sumatoria(5) from customers limit 10;
++------------+------------------------------------+--------------+
+| customerid | companyname                        | sumatoria(5) |
++------------+------------------------------------+--------------+
+| ALFKI      | Alfreds Futterkiste                |           15 |
+| ANATR      | Ana Trujillo Emparedados y helados |           15 |
+| ANTON      | Antonio Moreno Taquera             |           15 |
+| AROUT      | Around the Horn                    |           15 |
+| BSBEV      | B's Beverages                      |           15 |
+| BERGS      | Berglunds snabbkp                  |           15 |
+| BLAUS      | Blauer See Delikatessen            |           15 |
+| BOLID      | Blido Comidas preparadas           |           15 |
+| BLONP      | Blondesddsl pre et fils            |           15 |
+| BONAP      | Bon app'                           |           15 |
++------------+------------------------------------+--------------+
+10 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select cuenta_ordenes('ANATR');
+ERROR: 1054 (42S22): ClassicResult.fetchOne: Unknown column 'count' in 'field list'
+
+ MySQL  localhost:3306  northwind  SQL > select cuenta_ordenes('ANATR');
++-------------------------+
+| cuenta_ordenes('ANATR') |
++-------------------------+
+|                       4 |
++-------------------------+
+1 row in set (0.0005 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select customerid, companyname, cuenta_ordenes(customerid) from customers limit 10;
++------------+------------------------------------+----------------------------+
+| customerid | companyname                        | cuenta_ordenes(customerid) |
++------------+------------------------------------+----------------------------+
+| ALFKI      | Alfreds Futterkiste                |                          6 |
+| ANATR      | Ana Trujillo Emparedados y helados |                          4 |
+| ANTON      | Antonio Moreno Taquera             |                          7 |
+| AROUT      | Around the Horn                    |                         13 |
+| BSBEV      | B's Beverages                      |                         10 |
+| BERGS      | Berglunds snabbkp                  |                         18 |
+| BLAUS      | Blauer See Delikatessen            |                          7 |
+| BOLID      | Blido Comidas preparadas           |                          3 |
+| BLONP      | Blondesddsl pre et fils            |                         11 |
+| BONAP      | Bon app'                           |                         17 |
++------------+------------------------------------+----------------------------+
+10 rows in set (0.0008 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select customerid, companyname, cuenta_ordenes(customerid) as no_ordenes from customers limit 10;
++------------+------------------------------------+------------+
+| customerid | companyname                        | no_ordenes |
++------------+------------------------------------+------------+
+| ALFKI      | Alfreds Futterkiste                |          6 |
+| ANATR      | Ana Trujillo Emparedados y helados |          4 |
+| ANTON      | Antonio Moreno Taquera             |          7 |
+| AROUT      | Around the Horn                    |         13 |
+| BSBEV      | B's Beverages                      |         10 |
+| BERGS      | Berglunds snabbkp                  |         18 |
+| BLAUS      | Blauer See Delikatessen            |          7 |
+| BOLID      | Blido Comidas preparadas           |          3 |
+| BLONP      | Blondesddsl pre et fils            |         11 |
+| BONAP      | Bon app'                           |         17 |
++------------+------------------------------------+------------+
+10 rows in set (0.0007 sec)
+
+ MySQL  localhost:3306  northwind  SQL > desc orderdetails;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| OrderID   | int(11)       | NO   | PRI | NULL    |       |
+| ProductID | int(11)       | NO   | PRI | NULL    |       |
+| UnitPrice | decimal(10,4) | NO   |     | 0.0000  |       |
+| Quantity  | smallint(2)   | NO   |     | 1       |       |
+| Discount  | double(8,0)   | NO   |     | 0       |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0.0044 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) into cont from orderdetails
+                                     ...     inner join orders on orderdetails.orderid = orders.orderid
+                                     ...     inner join customers on orders.customerid = customers.customerid
+                                     ...     group by orders.customerid;
+ERROR: 1327 (42000): Undeclared variable: cont
+
+ MySQL  localhost:3306  northwind  SQL > select count(*) from orderdetails inner join orders on orderdetails.orderid = orders.orderid inner join customers on orders.customerid = customers.customerid group by orders.customerid;
++----------+
+| count(*) |
++----------+
+|       12 |
+|       10 |
+|       17 |
+|       30 |
+|       52 |
+|       14 |
+|       26 |
+|        6 |
+|       44 |
+|       35 |
+|       22 |
+|       11 |
+|        2 |
+|       22 |
+|       10 |
+|        7 |
+|       10 |
+|        9 |
+|       21 |
+|      102 |
+|       19 |
+|       16 |
+|       45 |
+|       48 |
+|        6 |
+|       10 |
+|       20 |
+|        8 |
+|       26 |
+|       19 |
+|       22 |
+|        4 |
+|       32 |
+|       45 |
+|        9 |
+|       55 |
+|       23 |
+|       39 |
+|       11 |
+|       31 |
+|        8 |
+|        2 |
+|       39 |
+|       10 |
+|       34 |
+|       35 |
+|       14 |
+|       21 |
+|       17 |
+|       32 |
+|       11 |
+|        6 |
+|       11 |
+|       24 |
+|       29 |
+|       14 |
+|       23 |
+|       10 |
+|       24 |
+|       40 |
+|       86 |
+|       12 |
+|       71 |
+|       22 |
+|       27 |
+|       30 |
+|       14 |
+|       16 |
+|      116 |
+|       26 |
+|       15 |
+|        6 |
+|       20 |
+|       39 |
+|        7 |
+|        8 |
+|       14 |
+|       29 |
+|       13 |
+|        9 |
+|       31 |
+|       25 |
+|       10 |
+|       26 |
+|       37 |
+|       19 |
+|       40 |
+|       17 |
+|       16 |
++----------+
+89 rows in set (0.0042 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select customerid, companyname, total_orders(customerid) from total_ventas limit 10;
+ERROR: 1146 (42S02): Table 'northwind.total_ventas' doesn't exist
+
+ MySQL  localhost:3306  northwind  SQL > select customerid, companyname, total_orders(customerid) as total from customers limit 10;
++------------+------------------------------------+-------+
+| customerid | companyname                        | total |
++------------+------------------------------------+-------+
+| ALFKI      | Alfreds Futterkiste                |    12 |
+| ANATR      | Ana Trujillo Emparedados y helados |    10 |
+| ANTON      | Antonio Moreno Taquera             |    17 |
+| AROUT      | Around the Horn                    |    30 |
+| BSBEV      | B's Beverages                      |    22 |
+| BERGS      | Berglunds snabbkp                  |    52 |
+| BLAUS      | Blauer See Delikatessen            |    14 |
+| BOLID      | Blido Comidas preparadas           |     6 |
+| BLONP      | Blondesddsl pre et fils            |    26 |
+| BONAP      | Bon app'                           |    44 |
++------------+------------------------------------+-------+
+10 rows in set (0.0016 sec)
+
+ MySQL  localhost:3306  northwind  SQL >

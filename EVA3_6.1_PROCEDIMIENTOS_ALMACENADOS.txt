@@ -1,0 +1,42 @@
+ MySQL  localhost:3306  northwind  SQL > update copia_empleados set rfc='';
+Query OK, 9 rows affected (0.0617 sec)
+
+Rows matched: 9  Changed: 9  Warnings: 0
+
+ MySQL  localhost:3306  northwind  SQL > select rfc from copia_empleados;
++-----+
+| rfc |
++-----+
+|     |
+|     |
+|     |
+|     |
+|     |
+|     |
+|     |
+|     |
+|     |
++-----+
+9 rows in set (0.0003 sec)
+
+ MySQL  localhost:3306  northwind  SQL > call rfc_empleados();
+Query OK, 0 rows affected, 1 warning (0.2459 sec)
+Error (code 1329): No data - zero rows fetched, selected, or processed
+
+ MySQL  localhost:3306  northwind  SQL > select rfc from copia_empleados;
++--------------+
+| rfc          |
++--------------+
+| DAXN19481208 |
+| FUXA19520219 |
+| LEXJ19630830 |
+| PEXM19370919 |
+| BUXS19550304 |
+| SUXM19630702 |
+| KIXR19600529 |
+| CAXL19580109 |
+| DOXA19660127 |
++--------------+
+9 rows in set (0.0003 sec)
+
+ MySQL  localhost:3306  northwind  SQL >

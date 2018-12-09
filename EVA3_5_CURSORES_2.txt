@@ -1,0 +1,23 @@
+ MySQL  localhost:3306  northwind  SQL > select rfc_automatico();
++------------------+
+| rfc_automatico() |
++------------------+
+|                0 |
++------------------+
+1 row in set (0.0408 sec)
+
+ MySQL  localhost:3306  northwind  SQL > select rfc from copia_empleados;
++--------------+
+| rfc          |
++--------------+
+| DAXN19481208 |
+| FUXA19520219 |
+| LEXJ19630830 |
+| PEXM19370919 |
+| BUXS19550304 |
+| SUXM19630702 |
+| KIXR19600529 |
+| CAXL19580109 |
+| DOXA19660127 |
++--------------+
+9 rows in set (0.0003 sec)
